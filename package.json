@@ -10,6 +10,7 @@
     "preview": "vite preview"
   },
   "dependencies": {
+    "@tanstack/react-query": "^5.28.9",
     "localforage": "^1.10.0",
     "match-sorter": "^6.3.4",
     "react": "^18.2.0",
@@ -19,6 +20,9 @@
   },
   "devDependencies": {
     "@faker-js/faker": "^8.4.1",
+    "@remix-run/node": "^2.8.1",
+    "@remix-run/react": "^2.8.1",
+    "@tanstack/react-query-devtools": "^5.28.10",
     "@types/react": "^18.2.66",
     "@types/react-dom": "^18.2.22",
     "@types/react-router-dom": "^5.3.3",

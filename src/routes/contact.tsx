@@ -1,10 +1,11 @@
-import { Form, useFetcher } from "react-router-dom";
-import { contactLoader } from "../util/functions";
-import { useTypedLoaderData } from "../util/helpers";
+import { useSuspenseQuery } from "@tanstack/react-query";
+import { Form, useFetcher, useParams } from "react-router-dom";
+import { contactQueryOptions } from "../util/queries";
 import { ContactType } from "../util/types";
 
 function Contact() {
-  const { contact } = useTypedLoaderData<typeof contactLoader>();
+  const { contactId } = useParams();
+  const { data: contact } = useSuspenseQuery(contactQueryOptions(contactId!));
   return (
     <div id="contact">
       <div>

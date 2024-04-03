@@ -1,4 +1,4 @@
-import { useEffect, useRef } from "react";
+import { Suspense, useEffect, useRef } from "react";
 import {
   Form,
   NavLink,
@@ -9,15 +9,20 @@ import {
   useSubmit,
 } from "react-router-dom";
 import { contactsLoader } from "../util/functions";
-import { useTypedLoaderData } from "../util/helpers";
+import {
+  Await,
+  useTypedAsyncValue,
+  useTypedDeferredLoaderData,
+} from "../util/helpers";
 
 function Root() {
-  const { contacts, q } = useTypedLoaderData<typeof contactsLoader>();
+  const { contacts } = useTypedDeferredLoaderData<typeof contactsLoader>();
+  const [searchParams, setSearchParams] = useSearchParams();
+  const q = searchParams.get("q");
   const navigation = useNavigation();
   const navigate = useNavigate();
   const inputRef = useRef<HTMLInputElement>(null);
   const submit = useSubmit();
-  const [searchParams, setSearchParams] = useSearchParams();
   const isSearching = searchParams.has("q") && navigation.location;
 
   useEffect(() => {
@@ -54,39 +59,11 @@ function Root() {
             <button type="submit">New</button>
           </Form>
         </div>
-        <nav>
-          {contacts.length ? (
-            <ul>
-              {contacts.map((contact) => (
-                <li key={contact.id}>
-                  <NavLink
-                    to={
-                      q
-                        ? `contacts/${contact.id}?q=${q}`
-                        : `contacts/${contact.id}`
-                    }
-                    className={({ isActive, isPending }) =>
-                      isActive ? "active" : isPending ? "pending" : ""
-                    }
-                  >
-                    {contact.first || contact.last ? (
-                      <>
-                        {contact.first} {contact.last}
-                      </>
-                    ) : (
-                      <i>No Name</i>
-                    )}{" "}
-                    {contact.favorite && <span>★</span>}
-                  </NavLink>
-                </li>
-              ))}
-            </ul>
-          ) : (
-            <p>
-              <i>No contacts found</i>
-            </p>
-          )}
-        </nav>
+        <Suspense fallback={<p>Loading...</p>}>
+          <Await resolve={contacts}>
+            <ContactsList q={q} />
+          </Await>
+        </Suspense>
       </div>
       <div
         id="detail"
@@ -97,4 +74,42 @@ function Root() {
     </>
   );
 }
+
+const ContactsList = (props: { q: string | null }) => {
+  const { q } = props;
+  const contacts = useTypedAsyncValue<typeof contactsLoader, "contacts">();
+  return (
+    <nav>
+      {contacts.length ? (
+        <ul>
+          {contacts.map((contact) => (
+            <li key={contact.id}>
+              <NavLink
+                to={
+                  q ? `contacts/${contact.id}?q=${q}` : `contacts/${contact.id}`
+                }
+                className={({ isActive, isPending }) =>
+                  isActive ? "active" : isPending ? "pending" : ""
+                }
+              >
+                {contact.first || contact.last ? (
+                  <>
+                    {contact.first} {contact.last}
+                  </>
+                ) : (
+                  <i>No Name</i>
+                )}{" "}
+                {contact.favorite && <span>★</span>}
+              </NavLink>
+            </li>
+          ))}
+        </ul>
+      ) : (
+        <p>
+          <i>No contacts found</i>
+        </p>
+      )}
+    </nav>
+  );
+};
 export default Root;

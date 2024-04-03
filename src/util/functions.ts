@@ -1,30 +1,32 @@
+import { QueryClient } from "@tanstack/react-query";
 import { ActionFunction, LoaderFunction, redirect } from "react-router-dom";
-import {
-  createContact,
-  deleteContact,
-  getContact,
-  getContacts,
-  updateContact,
-} from "../contacts";
+import { createContact, deleteContact, updateContact } from "../contacts";
+import { deferredLoader } from "./helpers";
+import { contactQueryOptions, contactsQueryOptions } from "./queries";
 
-export const contactLoader = (async ({ params }) => {
-  const contact = await getContact(params.contactId!);
-  if (!contact)
-    throw new Response("", {
-      status: 404,
-      statusText: "Not Found",
-    });
-  return { contact };
+export const queryClient = new QueryClient({
+  defaultOptions: {
+    queries: {
+      staleTime: 1000 * 60 * 5,
+    },
+  },
+});
+
+export const contactLoader = (({ params }) => {
+  return queryClient.ensureQueryData(contactQueryOptions(params.contactId!));
 }) satisfies LoaderFunction;
 
-export const contactsLoader = (async ({ request }) => {
+export const contactsLoader = deferredLoader(({ request }) => {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
-  const contacts = await getContacts(q);
-  return { contacts, q };
-}) satisfies LoaderFunction;
+  const options = contactsQueryOptions(q);
+  return {
+    contacts: queryClient.ensureQueryData(options),
+  };
+});
 
 export const contactAction: ActionFunction = async () => {
+  await queryClient.invalidateQueries({ queryKey: ["contacts"] });
   const contact = await createContact();
   return redirect(`/contacts/${contact.id}/edit`);
 };

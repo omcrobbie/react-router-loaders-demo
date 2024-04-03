@@ -3,7 +3,7 @@ import { contactLoader } from "../util/functions";
 import { useTypedLoaderData } from "../util/helpers";
 
 export default function EditContact() {
-  const { contact } = useTypedLoaderData<typeof contactLoader>();
+  const contact = useTypedLoaderData<typeof contactLoader>();
   const navigate = useNavigate();
 
   return (
