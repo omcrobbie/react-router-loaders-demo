@@ -1,9 +1,9 @@
+import { useLoaderData } from "@remix-run/react";
 import { Form, useNavigate } from "react-router-dom";
 import { contactLoader } from "../util/functions";
-import { useTypedLoaderData } from "../util/helpers";
 
 export default function EditContact() {
-  const contact = useTypedLoaderData<typeof contactLoader>();
+  const contact = useLoaderData<typeof contactLoader>();
   const navigate = useNavigate();
 
   return (

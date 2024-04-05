@@ -1,3 +1,4 @@
+import { Await, useLoaderData } from "@remix-run/react";
 import { Suspense, useEffect, useRef } from "react";
 import {
   Form,
@@ -9,14 +10,10 @@ import {
   useSubmit,
 } from "react-router-dom";
 import { contactsLoader } from "../util/functions";
-import {
-  Await,
-  useTypedAsyncValue,
-  useTypedDeferredLoaderData,
-} from "../util/helpers";
+import { useTypedAsyncValue } from "../util/helpers";
 
 function Root() {
-  const { contacts } = useTypedDeferredLoaderData<typeof contactsLoader>();
+  const { contacts } = useLoaderData<typeof contactsLoader>();
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get("q");
   const navigation = useNavigation();
