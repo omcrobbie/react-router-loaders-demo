@@ -1,0 +1,202 @@
+// Vitest Snapshot v1, https://vitest.dev/guide/snapshot.html
+
+exports[`root - renders list of contacts 1`] = `
+<div>
+  <div
+    id="sidebar"
+  >
+    <h1>
+      React Router Contacts
+    </h1>
+    <div>
+      <form
+        action="/"
+        id="search-form"
+        method="get"
+        role="search"
+      >
+        <input
+          aria-label="Search contacts"
+          class=""
+          id="q"
+          name="q"
+          placeholder="Search"
+          type="search"
+          value=""
+        />
+        <div
+          aria-hidden="true"
+          hidden=""
+          id="search-spinner"
+        />
+        <div
+          aria-live="polite"
+          class="sr-only"
+        />
+      </form>
+      <form
+        action="/"
+        method="post"
+      >
+        <button
+          type="submit"
+        >
+          New
+        </button>
+      </form>
+    </div>
+    <nav
+      data-testid="contacts-list"
+    >
+      <ul>
+        <li>
+          <a
+            class=""
+            href="/contacts/jb6bezu"
+          >
+            Arlo
+             
+            Collins
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/tmfta2f"
+          >
+            Stuart
+             
+            Dietrich
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/verp7yw"
+          >
+            Ivy
+             
+            Faheys
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/fneyyep"
+          >
+            Milo
+             
+            Hagene
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/ivtdycc"
+          >
+            Maeve
+             
+            Keeling
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/tjhmw2g"
+          >
+            Demarcus
+             
+            Kub
+             
+            <span>
+              ★
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/kt1pa1k"
+          >
+            Kaitlyn
+             
+            Leuschke
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/z3te9nl"
+          >
+            Lorenzo
+             
+            Lowe
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/5kdlev3"
+          >
+            Abdullah
+             
+            Veum-O'Conners
+             
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/5jpv6le"
+          >
+            Reggie
+             
+            Veums
+             
+            <span>
+              ★
+            </span>
+          </a>
+        </li>
+        <li>
+          <a
+            class=""
+            href="/contacts/vc9pp09"
+          >
+            Margaret
+             
+            Zboncakz
+             
+          </a>
+        </li>
+      </ul>
+    </nav>
+  </div>
+  <div
+    class=""
+    id="detail"
+  >
+    <p
+      id="zero-state"
+    >
+      This is a demo for React Router.
+      <br />
+      Check out
+       
+      <a
+        href="https://reactrouter.com"
+      >
+        the docs at reactrouter.com
+      </a>
+      .
+    </p>
+  </div>
+</div>
+`;

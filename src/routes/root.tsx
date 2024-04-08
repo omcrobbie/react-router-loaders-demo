@@ -76,7 +76,7 @@ const ContactsList = (props: { q: string | null }) => {
   const { q } = props;
   const contacts = useTypedAsyncValue<typeof contactsLoader, "contacts">();
   return (
-    <nav>
+    <nav data-testid="contacts-list">
       {contacts.length ? (
         <ul>
           {contacts.map((contact) => (
