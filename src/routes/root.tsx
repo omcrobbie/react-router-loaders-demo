@@ -1,5 +1,4 @@
-import { Await, useLoaderData } from "@remix-run/react";
-import { Suspense, useEffect, useRef } from "react";
+import { useEffect, useRef } from "react";
 import {
   Form,
   NavLink,
@@ -10,10 +9,9 @@ import {
   useSubmit,
 } from "react-router-dom";
 import { contactsLoader } from "../util/functions";
-import { useTypedAsyncValue } from "../util/helpers";
+import { useTypedLoaderData } from "../util/helpers";
 
 function Root() {
-  const { contacts } = useLoaderData<typeof contactsLoader>();
   const [searchParams, setSearchParams] = useSearchParams();
   const q = searchParams.get("q");
   const navigation = useNavigation();
@@ -56,11 +54,8 @@ function Root() {
             <button type="submit">New</button>
           </Form>
         </div>
-        <Suspense fallback={<p>Loading...</p>}>
-          <Await resolve={contacts}>
-            <ContactsList q={q} />
-          </Await>
-        </Suspense>
+
+        <ContactsList q={q} />
       </div>
       <div
         id="detail"
@@ -74,7 +69,7 @@ function Root() {
 
 const ContactsList = (props: { q: string | null }) => {
   const { q } = props;
-  const contacts = useTypedAsyncValue<typeof contactsLoader, "contacts">();
+  const contacts = useTypedLoaderData<typeof contactsLoader>();
   return (
     <nav data-testid="contacts-list">
       {contacts.length ? (
@@ -82,6 +77,7 @@ const ContactsList = (props: { q: string | null }) => {
           {contacts.map((contact) => (
             <li key={contact.id}>
               <NavLink
+                data-testid={`contact-item-${contact.id}`}
                 to={
                   q ? `contacts/${contact.id}?q=${q}` : `contacts/${contact.id}`
                 }

@@ -12,6 +12,7 @@ dist
 dist-ssr
 *.local
 .vitest-preview
+coverage
 
 # Editor directories and files
 .vscode/*

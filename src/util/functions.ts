@@ -1,10 +1,7 @@
-import { defer } from "@remix-run/react";
-import { QueryClient } from "@tanstack/react-query";
 import { ActionFunction, LoaderFunction, redirect } from "react-router-dom";
 import { createContact, deleteContact, updateContact } from "../contacts";
+import { queryClient } from "./client";
 import { contactQueryOptions, contactsQueryOptions } from "./queries";
-
-export const queryClient = new QueryClient();
 
 const removeQueries = () => {
   queryClient.removeQueries({ queryKey: ["contact"] });
@@ -19,9 +16,7 @@ export const contactsLoader = (({ request }) => {
   const url = new URL(request.url);
   const q = url.searchParams.get("q");
   const options = contactsQueryOptions(q);
-  return defer({
-    contacts: queryClient.ensureQueryData(options),
-  });
+  return queryClient.ensureQueryData(options);
 }) satisfies LoaderFunction;
 
 export const contactAction: ActionFunction = async () => {

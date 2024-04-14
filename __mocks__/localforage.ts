@@ -1,4 +1,4 @@
-const contacts = [
+let contacts = [
   {
     id: "jb6bezu",
     createdAt: 1712448222911,
@@ -113,5 +113,9 @@ const contacts = [
 
 const mock = {
   getItem: () => Promise.resolve(contacts),
+  setItem: (key: string, data: never) => {
+    contacts = data;
+    return Promise.resolve(contacts);
+  },
 };
 export default mock;

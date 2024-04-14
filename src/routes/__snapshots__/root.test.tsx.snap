@@ -52,6 +52,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-jb6bezu"
             href="/contacts/jb6bezu"
           >
             Arlo
@@ -63,6 +64,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-tmfta2f"
             href="/contacts/tmfta2f"
           >
             Stuart
@@ -74,6 +76,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-verp7yw"
             href="/contacts/verp7yw"
           >
             Ivy
@@ -85,6 +88,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-fneyyep"
             href="/contacts/fneyyep"
           >
             Milo
@@ -96,6 +100,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-ivtdycc"
             href="/contacts/ivtdycc"
           >
             Maeve
@@ -107,6 +112,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-tjhmw2g"
             href="/contacts/tjhmw2g"
           >
             Demarcus
@@ -121,6 +127,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-kt1pa1k"
             href="/contacts/kt1pa1k"
           >
             Kaitlyn
@@ -132,6 +139,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-z3te9nl"
             href="/contacts/z3te9nl"
           >
             Lorenzo
@@ -143,6 +151,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-5kdlev3"
             href="/contacts/5kdlev3"
           >
             Abdullah
@@ -154,6 +163,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-5jpv6le"
             href="/contacts/5jpv6le"
           >
             Reggie
@@ -168,6 +178,7 @@ exports[`root - renders list of contacts 1`] = `
         <li>
           <a
             class=""
+            data-testid="contact-item-vc9pp09"
             href="/contacts/vc9pp09"
           >
             Margaret

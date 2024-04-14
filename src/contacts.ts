@@ -81,7 +81,7 @@ async function fakeNetwork(key?: string) {
   } else if (key && !fakeCache[key]) {
     fakeCache[key] = true;
     return new Promise((res) => {
-      setTimeout(res, 300);
+      setTimeout(res, 1000);
     });
   }
 }
