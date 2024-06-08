@@ -1,7 +1,6 @@
 import { screen, waitFor } from "@testing-library/react";
 import { renderApp } from "../util/test";
 
-vi.mock("localforage");
 test("root - renders list of contacts", async () => {
   const { container, location, userEvent } = renderApp();
   await screen.findByTestId("contacts-list");
@@ -13,11 +12,13 @@ test("root - renders list of contacts", async () => {
 });
 
 test("root - creates a new contact", async () => {
-  const { userEvent } = renderApp();
-  const elems = await screen.findAllByTestId(/contact-item/);
+  const { userEvent, location } = renderApp();
+  const elems = await screen.findAllByRole("listitem");
   expect(elems).toHaveLength(11);
   await userEvent.click(screen.getByText("New"));
-  await waitFor(() =>
-    expect(screen.getAllByTestId(/contact-item/)).toHaveLength(12)
-  );
+
+  await waitFor(() => {
+    expect(location.history).toHaveLength(2);
+  });
+  expect(screen.getAllByRole("listitem")).toHaveLength(12);
 });

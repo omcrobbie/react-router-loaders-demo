@@ -13,7 +13,7 @@ import { queryClient } from "./client";
 import { getRoutes } from "./router";
 
 export const renderApp = (opts?: { url: string }) => {
-  const location: { current: Location } = {
+  const location: { current: Location; history: string[] } = {
     current: {
       state: undefined,
       key: "",
@@ -21,12 +21,17 @@ export const renderApp = (opts?: { url: string }) => {
       search: "",
       hash: "",
     },
+    history: [],
   };
+
   const TestRoot = () => {
     const _location = useLocation();
 
     useEffect(() => {
       location.current = _location;
+      if (_location.pathname) {
+        location.history.push(_location.pathname);
+      }
     }, [_location, _location.pathname]);
 
     return <Root />;
@@ -40,6 +45,7 @@ export const renderApp = (opts?: { url: string }) => {
       <RouterProvider router={testRouter} />
     </QueryClientProvider>
   );
+
   return {
     ...renderData,
     location,

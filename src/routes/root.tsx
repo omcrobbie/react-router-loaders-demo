@@ -75,7 +75,7 @@ const ContactsList = (props: { q: string | null }) => {
       {contacts.length ? (
         <ul>
           {contacts.map((contact) => (
-            <li key={contact.id}>
+            <li key={contact.id} role="listitem">
               <NavLink
                 data-testid={`contact-item-${contact.id}`}
                 to={
